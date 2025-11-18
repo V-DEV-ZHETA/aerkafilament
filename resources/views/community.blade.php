@@ -393,28 +393,30 @@
                             <!-- Social Media Links -->
                             <div class="flex items-center justify-between">
                                 <div class="flex space-x-3">
-                                    @if($anggota->sosmed)
+                                    @if(is_array($anggota->sosmed) && !empty($anggota->sosmed))
                                         @foreach($anggota->sosmed as $platform => $url)
-                                            @if(strtolower($platform) === 'instagram')
-                                                <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 flex items-center justify-center text-white hover:scale-110 transition-all duration-300">
-                                                    <i class="fab fa-instagram text-purple-500 text-2xl"></i>
-                                                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
-                                                </a>
-                                            @elseif(strtolower($platform) === 'whatsapp')
-                                                <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                                    <i class="fab fa-whatsapp text-sm"></i>
-                                                    <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-green-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
-                                                </a>
-                                            @elseif(strtolower($platform) === 'facebook')
-                                                <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                                    <i class="fab fa-facebook text-sm"></i>
-                                                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
-                                                </a>
-                                            @elseif(strtolower($platform) === 'tiktok')
-                                                <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                                    <i class="fab fa-tiktok text-sm"></i>
-                                                    <div class="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
-                                                </a>
+                                            @if(is_string($platform) && is_string($url))
+                                                @if(strtolower($platform) === 'instagram')
+                                                    <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 flex items-center justify-center text-white hover:scale-110 transition-all duration-300">
+                                                        <i class="fab fa-instagram text-purple-500 text-2xl"></i>
+                                                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
+                                                    </a>
+                                                @elseif(strtolower($platform) === 'whatsapp')
+                                                    <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                                        <i class="fab fa-whatsapp text-sm"></i>
+                                                        <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-green-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
+                                                    </a>
+                                                @elseif(strtolower($platform) === 'facebook')
+                                                    <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                                        <i class="fab fa-facebook text-sm"></i>
+                                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
+                                                    </a>
+                                                @elseif(strtolower($platform) === 'tiktok')
+                                                    <a href="{{ $url }}" target="_blank" class="group relative w-11 h-11 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                                        <i class="fab fa-tiktok text-sm"></i>
+                                                        <div class="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
+                                                    </a>
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif
@@ -689,7 +691,16 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @forelse($dokumentasis as $dokumentasi)
                     <div class="relative overflow-hidden rounded-lg group cursor-pointer">
-                        @if($dokumentasi->dokumentasi)
+                        @if(is_array($dokumentasi->dokumentasi) && !empty($dokumentasi->dokumentasi))
+                            @php
+                                $firstImage = is_string($dokumentasi->dokumentasi[0]) ? $dokumentasi->dokumentasi[0] : null;
+                            @endphp
+                            @if($firstImage)
+                            <img src="{{ asset('storage/' . $firstImage) }}" alt="Gallery" class="w-full h-full object-cover">
+                            @else
+                            <img src="https://picsum.photos/seed/gallery/400/400.jpg" alt="Gallery" class="w-full h-full object-cover">
+                            @endif
+                        @elseif(is_string($dokumentasi->dokumentasi) && !empty($dokumentasi->dokumentasi))
                         <img src="{{ asset('storage/' . $dokumentasi->dokumentasi) }}" alt="Gallery" class="w-full h-full object-cover">
                         @else
                         <img src="https://picsum.photos/seed/gallery/400/400.jpg" alt="Gallery" class="w-full h-full object-cover">

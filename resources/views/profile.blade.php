@@ -18,9 +18,9 @@
 
     <style>
         :root {
-            --primary-green: #2d5a27;
-            --secondary-blue: #3b82f6;
-            --accent-blue: #3b82f6;
+            --primary-green: #1a4d2e; /* Hijau hutan Kalimantan yang lebih dalam */
+            --secondary-blue: #87ceeb; /* Biru langit yang lebih cerah */
+            --accent-blue: #4682b4; /* Biru steel untuk aksen */
             --light-bg: #ffffff;
             --card-bg: #ffffff;
             --text-dark: #1f2937;
@@ -42,38 +42,52 @@
         }
 
         .gradient-kalimantan {
-            background-color: var(--primary-green);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
         }
 
         .card-bg {
             background-color: var(--card-bg);
-            border: 1px solid rgba(45, 90, 39, 0.1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(26, 77, 46, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .hover-glow:hover {
-            box-shadow: 0 2px 4px rgba(45, 90, 39, 0.1);
+            box-shadow: 0 10px 15px rgba(26, 77, 46, 0.1);
         }
 
         .social-icon {
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .social-icon:hover {
-            opacity: 0.8;
+            transform: translateY(-3px);
         }
 
         .profile-hero {
-            background: linear-gradient(135deg, #2d5a27 0%, #3b82f6 100%);
-            min-height: 60vh;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-blue) 100%);
+            min-height: 70vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
         }
 
         .profile-avatar {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            border: 8px solid rgba(255, 255, 255, 0.9);
+            border: 6px solid rgba(255, 255, 255, 0.9);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -85,9 +99,10 @@
 
         .info-card {
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid rgba(45, 90, 39, 0.1);
+            border: 1px solid rgba(26, 77, 46, 0.1);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border-radius: 16px;
         }
 
         .info-card:hover {
@@ -96,48 +111,66 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(45, 90, 39, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-            border: 1px solid rgba(45, 90, 39, 0.2);
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.1) 0%, rgba(135, 206, 235, 0.1) 100%);
+            border: 1px solid rgba(26, 77, 46, 0.2);
             transition: all 0.3s ease;
+            border-radius: 16px;
         }
 
         .stat-card:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(45, 90, 39, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.15) 0%, rgba(135, 206, 235, 0.15) 100%);
         }
 
         .social-button {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .social-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
         }
 
         .social-button:hover {
-            transform: translateY(-3px) scale(1.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .timeline-item {
             position: relative;
             padding-left: 30px;
+            margin-bottom: 24px;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 0;
-            width: 12px;
-            height: 12px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background-color: var(--primary-green);
+            z-index: 2;
         }
 
         .timeline-item::after {
             content: '';
             position: absolute;
-            left: 5px;
-            top: 12px;
+            left: 6px;
+            top: 20px;
             width: 2px;
             height: calc(100% + 10px);
-            background-color: rgba(45, 90, 39, 0.3);
+            background-color: rgba(26, 77, 46, 0.3);
         }
 
         .timeline-item:last-child::after {
@@ -151,13 +184,83 @@
             z-index: 50;
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(45, 90, 39, 0.2);
+            border: 1px solid rgba(26, 77, 46, 0.2);
             transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .back-button:hover {
             background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.05) 0%, rgba(135, 206, 235, 0.05) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .info-item:hover {
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.1) 0%, rgba(135, 206, 235, 0.1) 100%);
+            transform: translateX(5px);
+        }
+
+        .vehicle-gallery img {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .vehicle-gallery img:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background-color: var(--secondary-blue);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--secondary-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: 10%;
         }
 
         @media (max-width: 768px) {
@@ -166,43 +269,37 @@
             }
 
             .profile-avatar {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
             }
 
             .back-button {
                 top: 10px;
                 left: 10px;
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
 </head>
 <body class="antialiased">
     <!-- Back Button -->
-    <a href="{{ url('/') }}" class="back-button w-12 h-12 rounded-full flex items-center justify-center text-primary-green hover:text-secondary-blue shadow-lg">
-        <i class="fas fa-arrow-left text-xl"></i>
+    <a href="{{ url('/') }}" class="back-button">
+        <i class="fas fa-arrow-left text-xl" style="color: var(--primary-green)"></i>
     </a>
 
     <!-- Hero Section -->
-    <section class="profile-hero relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/20"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-green/30 to-secondary-blue/30"></div>
-
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 right-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 left-10 w-48 h-48 bg-white rounded-full blur-3xl"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    <section class="profile-hero relative">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
 
         <div class="container mx-auto px-6 py-20 relative z-10">
             <div class="text-center">
                 <div class="mb-8">
                     <img src="{{ asset('storage/' . $anggota->foto) }}" alt="{{ $anggota->nama }}" class="profile-avatar mx-auto mb-6">
-                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-medium mb-4 border border-white/30">
-                        <i class="fas fa-crown mr-2 text-yellow-300"></i>
-                        Member Aktif
-                    </div>
                 </div>
 
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">{{ $anggota->nama }}</h1>
@@ -222,53 +319,57 @@
                 <!-- Main Info -->
                 <div class="lg:col-span-2 space-y-8">
                     <!-- About Section -->
-                    <div class="info-card rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-primary-green mb-6 flex items-center">
-                            <i class="fas fa-user-circle mr-3 text-secondary-blue"></i>
+                    <div class="info-card p-8">
+                        <h2 class="text-2xl font-bold mb-6 flex items-center" style="color: var(--primary-green)">
+                            <i class="fas fa-user-circle mr-3" style="color: var(--accent-blue)"></i>
                             Tentang Saya
                         </h2>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-4">
-                                <div class="flex items-center p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-100">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-primary-green to-green-600 rounded-full flex items-center justify-center mr-4">
+                        <div class="space-y-4">
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--primary-green)">
                                         <i class="fas fa-id-card text-white"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-primary-green uppercase tracking-wide font-semibold">Nama Lengkap</p>
-                                        <p class="text-lg font-bold text-gray-800">{{ $anggota->nama }}</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-secondary-blue to-blue-600 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-briefcase text-white"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm text-secondary-blue uppercase tracking-wide font-semibold">Posisi</p>
-                                        <p class="text-lg font-bold text-gray-800">{{ $anggota->posisi }}</p>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Nama Lengkap</p>
+                                        <p class="text-lg font-bold">{{ $anggota->nama }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="space-y-4">
-                                <div class="flex items-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent-blue)">
+                                        <i class="fas fa-briefcase text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Posisi</p>
+                                        <p class="text-lg font-bold">{{ $anggota->posisi }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--secondary-blue)">
                                         <i class="fas fa-map-marked-alt text-white"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-purple-600 uppercase tracking-wide font-semibold">Region</p>
-                                        <p class="text-lg font-bold text-gray-800">{{ $anggota->region }}</p>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Region</p>
+                                        <p class="text-lg font-bold">{{ $anggota->region }}</p>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="flex items-center p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-100">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4">
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--primary-green)">
                                         <i class="fas fa-motorcycle text-white"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-orange-600 uppercase tracking-wide font-semibold">Jenis Kendaraan</p>
-                                        <p class="text-lg font-bold text-gray-800">{{ ucfirst($anggota->jeniskendaraan) }}</p>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Jenis Kendaraan</p>
+                                        <p class="text-lg font-bold">{{ ucfirst($anggota->jeniskendaraan) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -276,30 +377,34 @@
                     </div>
 
                     <!-- Vehicle Section -->
-                    <div class="info-card rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-primary-green mb-6 flex items-center">
-                            <i class="fas fa-car mr-3 text-secondary-blue"></i>
+                    <div class="info-card p-8">
+                        <h2 class="text-2xl font-bold mb-6 flex items-center" style="color: var(--primary-green)">
+                            <i class="fas fa-car mr-3" style="color: var(--accent-blue)"></i>
                             Kendaraan Itasha
                         </h2>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div class="flex items-center p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">
-                                <div class="w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full flex items-center justify-center mr-6">
-                                    <i class="fas fa-tag text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600 uppercase tracking-wide font-semibold">Merk Kendaraan</p>
-                                    <p class="text-xl font-bold text-gray-800">{{ $anggota->merkkendaraan }}</p>
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--primary-green)">
+                                        <i class="fas fa-tag text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Merk Kendaraan</p>
+                                        <p class="text-lg font-bold">{{ $anggota->merkkendaraan }}</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex items-center p-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-200">
-                                <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mr-6">
-                                    <i class="fas fa-palette text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-pink-600 uppercase tracking-wide font-semibold">Tema Itasha</p>
-                                    <p class="text-xl font-bold text-gray-800">{{ $anggota->itasha ?: 'Tidak ada tema spesifik' }}</p>
+                            <div class="info-item">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent-blue)">
+                                        <i class="fas fa-palette text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Tema Itasha</p>
+                                        <p class="text-lg font-bold">{{ $anggota->itasha ?: 'Tidak ada tema spesifik' }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -307,16 +412,14 @@
                         <!-- Foto Kendaraan Gallery -->
                         @if($anggota->foto_kendaraan && count($anggota->foto_kendaraan) > 0)
                         <div>
-                            <h3 class="text-lg font-semibold text-primary-green mb-4 flex items-center">
-                                <i class="fas fa-images mr-2 text-secondary-blue"></i>
+                            <h3 class="text-lg font-semibold mb-4 flex items-center" style="color: var(--primary-green)">
+                                <i class="fas fa-images mr-2" style="color: var(--accent-blue)"></i>
                                 Galeri Foto Kendaraan
                             </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="vehicle-gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 @foreach($anggota->foto_kendaraan as $foto)
-                                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-300 hover:border-primary-green transition-all duration-300">
-                                    <div class="aspect-video overflow-hidden">
-                                        <img src="{{ asset('storage/' . $foto) }}" alt="Foto Kendaraan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                                    </div>
+                                <div class="overflow-hidden rounded-xl" style="border: 1px solid rgba(26, 77, 46, 0.2)">
+                                    <img src="{{ asset('storage/' . $foto) }}" alt="Foto Kendaraan" class="w-full h-48 object-cover">
                                 </div>
                                 @endforeach
                             </div>
@@ -331,37 +434,33 @@
 
                     <!-- Social Media Section -->
                     @if($anggota->sosmed && count($anggota->sosmed) > 0)
-                    <div class="info-card rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-primary-green mb-6 flex items-center">
-                            <i class="fas fa-share-alt mr-3 text-secondary-blue"></i>
+                    <div class="info-card p-8">
+                        <h2 class="text-2xl font-bold mb-6 flex items-center" style="color: var(--primary-green)">
+                            <i class="fas fa-share-alt mr-3" style="color: var(--accent-blue)"></i>
                             Sosial Media
                         </h2>
 
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                             @foreach($anggota->sosmed as $platform => $url)
                                 @if(strtolower($platform) === 'instagram')
-                                    <a href="{{ $url }}" target="_blank" class="social-button group flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl text-white hover:shadow-xl">
-                                        <i class="fab fa-instagram text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                    <a href="{{ $url }}" target="_blank" class="social-button flex flex-col items-center p-6 text-white" style="background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)">
+                                        <i class="fab fa-instagram text-3xl mb-3"></i>
                                         <span class="font-semibold">Instagram</span>
-                                        <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl"></div>
                                     </a>
                                 @elseif(strtolower($platform) === 'whatsapp')
-                                    <a href="{{ $url }}" target="_blank" class="social-button group flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-green-600 rounded-xl text-white hover:shadow-xl">
-                                        <i class="fab fa-whatsapp text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                    <a href="{{ $url }}" target="_blank" class="social-button flex flex-col items-center p-6 text-white" style="background-color: #25D366">
+                                        <i class="fab fa-whatsapp text-3xl mb-3"></i>
                                         <span class="font-semibold">WhatsApp</span>
-                                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl"></div>
                                     </a>
                                 @elseif(strtolower($platform) === 'facebook')
-                                    <a href="{{ $url }}" target="_blank" class="social-button group flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl text-white hover:shadow-xl">
-                                        <i class="fab fa-facebook text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                    <a href="{{ $url }}" target="_blank" class="social-button flex flex-col items-center p-6 text-white" style="background-color: #1877F2">
+                                        <i class="fab fa-facebook text-3xl mb-3"></i>
                                         <span class="font-semibold">Facebook</span>
-                                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl"></div>
                                     </a>
                                 @elseif(strtolower($platform) === 'tiktok')
-                                    <a href="{{ $url }}" target="_blank" class="social-button group flex flex-col items-center p-6 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl text-white hover:shadow-xl">
-                                        <i class="fab fa-tiktok text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                    <a href="{{ $url }}" target="_blank" class="social-button flex flex-col items-center p-6 text-white" style="background-color: #000000">
+                                        <i class="fab fa-tiktok text-3xl mb-3"></i>
                                         <span class="font-semibold">TikTok</span>
-                                        <div class="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl"></div>
                                     </a>
                                 @endif
                             @endforeach
@@ -373,33 +472,33 @@
                 <!-- Sidebar -->
                 <div class="space-y-8">
                     <!-- Quick Stats -->
-                    <div class="stat-card rounded-2xl p-6 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-r from-primary-green to-secondary-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="stat-card p-6 text-center">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-blue) 100%)">
                             <i class="fas fa-star text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-primary-green mb-2">Member Aktif</h3>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--primary-green)">Member Aktif</h3>
                         <p class="text-gray-600">Sejak bergabung dengan komunitas</p>
                     </div>
 
                     <!-- Activity Timeline -->
-                    <div class="info-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold text-primary-green mb-6 flex items-center">
-                            <i class="fas fa-history mr-3 text-secondary-blue"></i>
+                    <div class="info-card p-6">
+                        <h3 class="text-xl font-bold mb-6 flex items-center" style="color: var(--primary-green)">
+                            <i class="fas fa-history mr-3" style="color: var(--accent-blue)"></i>
                             Aktivitas
                         </h3>
 
-                        <div class="space-y-4">
+                        <div>
                             <div class="timeline-item">
-                                <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                                    <h4 class="font-semibold text-primary-green">Bergabung Komunitas</h4>
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <h4 class="font-semibold" style="color: var(--primary-green)">Bergabung Komunitas</h4>
                                     <p class="text-sm text-gray-600">Member aktif ARK Kalimantan</p>
                                     <span class="text-xs text-gray-500">{{ $anggota->created_at->format('d M Y') }}</span>
                                 </div>
                             </div>
 
                             <div class="timeline-item">
-                                <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                                    <h4 class="font-semibold text-primary-green">Kendaraan Itasha</h4>
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <h4 class="font-semibold" style="color: var(--primary-green)">Kendaraan Itasha</h4>
                                     <p class="text-sm text-gray-600">{{ $anggota->merkkendaraan }} - {{ $anggota->itasha ?: 'Tema custom' }}</p>
                                     <span class="text-xs text-gray-500">Aktif</span>
                                 </div>
@@ -408,21 +507,21 @@
                     </div>
 
                     <!-- Contact Info -->
-                    <div class="info-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold text-primary-green mb-6 flex items-center">
-                            <i class="fas fa-envelope mr-3 text-secondary-blue"></i>
+                    <div class="info-card p-6">
+                        <h3 class="text-xl font-bold mb-6 flex items-center" style="color: var(--primary-green)">
+                            <i class="fas fa-envelope mr-3" style="color: var(--accent-blue)"></i>
                             Hubungi
                         </h3>
 
                         <div class="space-y-4">
-                            <a href="mailto:contact@ark-kalimantan.com" class="flex items-center p-3 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border border-blue-200 hover:border-blue-300 transition-colors">
-                                <i class="fas fa-envelope text-blue-600 mr-3"></i>
-                                <span class="text-blue-800 font-medium">Email Komunitas</span>
+                            <a href="mailto:contact@ark-kalimantan.com" class="flex items-center p-3 rounded-lg transition-colors" style="background-color: rgba(135, 206, 235, 0.1); border: 1px solid rgba(135, 206, 235, 0.3)">
+                                <i class="fas fa-envelope mr-3" style="color: var(--accent-blue)"></i>
+                                <span class="font-medium">Email Komunitas</span>
                             </a>
 
-                            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center p-3 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200 hover:border-green-300 transition-colors">
-                                <i class="fab fa-whatsapp text-green-600 mr-3"></i>
-                                <span class="text-green-800 font-medium">WhatsApp Group</span>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center p-3 rounded-lg transition-colors" style="background-color: rgba(26, 77, 46, 0.1); border: 1px solid rgba(26, 77, 46, 0.3)">
+                                <i class="fab fa-whatsapp mr-3" style="color: var(--primary-green)"></i>
+                                <span class="font-medium">WhatsApp Group</span>
                             </a>
                         </div>
                     </div>
@@ -432,7 +531,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-primary-green py-8">
+    <footer class="py-8" style="background-color: var(--primary-green)">
         <div class="container mx-auto px-6 text-center">
             <p class="text-green-100 text-sm">&copy; 2024 ANIME RIDING KALIMANTAN. All rights reserved.</p>
             <p class="text-white text-xs mt-2">Ride with Style, Express with Passion 🏍️✨</p>
